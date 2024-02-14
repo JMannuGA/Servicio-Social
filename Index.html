@@ -8,90 +8,25 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="container mt-5">
-    <h1 class="text-center mb-4">CRUD con Bootstrap</h1>
-
-    <!-- Formulario para Crear y Actualizar -->
-    <form id="crudForm">
-      <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre" required>
+  <header class="bg-dark text-white p-4">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="Ingrese el email" required>
-      </div>
-      <button type="submit" class="btn btn-primary" id="submitBtn">Guardar</button>
-    </form>
-
-    <hr>
-
-    <!-- Tabla para Mostrar y Borrar -->
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="tablaBody">
-        <!-- Aquí se insertarán los datos dinámicamente -->
-      </tbody>
-    </table>
-  </div>
-
-  <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- Script personalizado -->
-  <script>
-    $(document).ready(function(){
-      // Función para agregar o actualizar un elemento en la tabla
-      function agregarActualizarElemento(nombre, email){
-        var fila = '<tr>' +
-          '<td>' + nombre + '</td>' +
-          '<td>' + email + '</td>' +
-          '<td>' +
-            '<button class="btn btn-warning btn-sm editar">Editar</button>' +
-            '<button class="btn btn-danger btn-sm borrar">Borrar</button>' +
-          '</td>' +
-        '</tr>';
-
-        // Verificar si ya existe una fila con el mismo nombre (actualización) o agregar una nueva fila
-        var filaExistente = $('#tablaBody').find('td:contains("' + nombre + '")').first().parent('tr');
-        if (filaExistente.length) {
-          filaExistente.replaceWith(fila);
-        } else {
-          $('#tablaBody').append(fila);
-        }
-      }
-
-      // Agregar un elemento al enviar el formulario
-      $('#crudForm').submit(function(event){
-        event.preventDefault();
-        var nombre = $('#nombre').val();
-        var email = $('#email').val();
-        agregarActualizarElemento(nombre, email);
-        $('#crudForm')[0].reset(); // Limpiar el formulario
-      });
-
-      // Editar un elemento
-      $(document).on('click', '.editar', function(){
-        var fila = $(this).closest('tr');
-        var nombre = fila.find('td:eq(0)').text();
-        var email = fila.find('td:eq(1)').text();
-        $('#nombre').val(nombre);
-        $('#email').val(email);
-        fila.remove(); // Eliminar la fila antigua
-      });
-
-      // Borrar un elemento
-      $(document).on('click', '.borrar', function(){
-        $(this).closest('tr').remove();
-      });
-    });
-  </script>
+    </nav>
+</header>
 </body>
 </html>
